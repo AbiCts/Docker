@@ -1,0 +1,221 @@
+ALL JSON REQUEST FOR POSTMAN:
+
+AUTH-SERVICE:
+----------------------
+
+Post request Request Body:
+-------------------------
+
+Endpoint: localhost:9200/auth/register
+
+This is to register:
+
+{
+    "name": "Abilash",
+    "email": "kit.25.21bec002@gmail.com",
+    "password": "abilash"
+}
+
+Post request Request Body:
+------------------------
+
+This is to get token:
+
+Endpoint: localhost:9200/auth/token
+
+{
+    "name": "Abilash",
+    "email": "kit.25.21bec002@gmail.com",
+    "password": "abilash"
+}
+
+Post request RequestParam:
+-------------------------
+
+This is to validate the token:
+
+localhost:9200/auth/validate?token=eyJhbGciOiJIUzI1NiJ9.eyJwYXNzd29yZCI6ImFiaWxhc2giLCJlbWFpbCI6ImtpdC4yNS4yMWJlYzAwMkBnbWFpbC5jb20iLCJzdWIiOiJraXQuMjUuMjFiZWMwMDJAZ21haWwuY29tIiwiaWF0IjoxNzQ4MDc4MDYxLCJleHAiOjE3NDgxNjQ0NjF9.nN4Hw2jYmxwcKr2Akl1MBU4gx-mHPN00h1wqQaH-Z_4
+
+Send your actual token
+
+
+USER-SERVICE
+-------------------
+
+Post request RequestBody:
+-------------------------
+
+Note-> The email used for auth/register and this register must be same to register
+
+Endpoint: localhost:9200/user/register
+
+This is to register a new user:
+
+{
+    "name": "Abilash",
+    "password": "abilash",
+    "role": "INSTRUCTOR",
+    "email": "kit.25.21bec002@gmail.com"
+}
+ 
+Post request RequestParam:
+--------------------------
+
+This is to login:
+
+Endpoint: http://localhost:9200/user/login?email=kit.25.21bec002@gmail.com&password=abilash
+
+Note-> use the email and password that you have used to register
+
+Post request RequestParam:
+--------------------------
+
+This is for forget password:
+
+Endpoint: http://localhost:9200/user/forgotpassword?email=kit.25.21bec002@gmail.com
+
+Post request RequestParam:
+--------------------------
+
+This is for reseting the password:
+
+http://localhost:9200/user/resetpassword?newPassword="abilash1"
+
+
+COURSE-SERVICE:
+------------------------
+
+Post request RequestBody:
+--------------------------
+
+This is for adding courses:
+
+Endpoint: http://localhost:9200/course/courses
+
+{
+  "title": "Java Programming",
+  "description": "Learn the basics of Java",
+  "contentURL": "http://example.com/java-course",
+  "user": {
+    "userId": 1
+  }
+}
+
+You must be a user inorder to add a course
+
+
+Put request Requestbody and Pathvariable:
+-----------------------------------------
+
+This is for updating the courses:
+
+Endpoint: http://localhost:9200/course/courses/1
+
+{
+  "title": "Advanced Java",
+  "description": "Deep dive into Java concepts",
+  "contentURL": "http://example.com/advanced-java",
+  "user": {
+    "userId": 1
+  }
+}
+
+Delete request Pathvariable:
+-------------------------------
+
+This is for deleting the courses:
+
+Endpoint: http://localhost:9200/course/courses/1
+
+Get request:
+-------------
+
+This is for getting courses count:
+
+Endpoint: http://localhost:9200/course/courses/count
+
+Get request:
+--------------
+
+This is for getting courses by id:
+
+Endpoint: http://localhost:9200/course/courses/2
+
+
+ENROLLMENT-SERVICE:
+---------------------
+
+Post request RequestBody:
+--------------------------
+
+This is for registring enrollement:
+
+Endpoint: http://localhost:9200/enrollment/enrollments
+
+{
+    "user": {
+        "userId": 1
+    },
+    "course": {
+        "courseID": 1
+    },
+    "progress": 50
+}
+
+Get request Pathvariable:
+--------------------------
+
+This for getting enrollment by id:
+
+Endpoint: http://localhost:9200/enrollment/enrollments/6
+
+Get request:
+--------------
+
+This is to get all enrollments:
+
+Endpoint: http://localhost:9200/enrollment/enrollments
+
+Put request Pathvariable and RequestBody:
+-------------------------------------------
+
+This is to update enrollment progress:
+
+Endpoint: http://localhost:9200/enrollment/enrollments/6
+
+{
+    "user": {
+        "userId": 1
+    },
+    "course": {
+        "courseID": 1
+    },
+    "progress": 100
+}
+
+Delete Request PathVariable:
+--------------------------------
+
+This is to delete enrollment by id:
+
+Endpoint: http://localhost:9200/enrollment/enrollments/6
+
+
+
+ASSESSMENT AND SUBMISSION SERVICE:
+------------------------------------
+
+Post request RequestBody:
+--------------------------
+
+This is to add assessment:
+
+Endpoint: http://localhost:9200/assessments/assessment
+
+{
+    "course": {
+        "courseID": 2
+    },
+    "type": "Quiz",
+    "maxScore": 100
+}
